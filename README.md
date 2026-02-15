@@ -1,11 +1,11 @@
 # Interactive Web Application
 
 ## Project Theme:
-Digital Recipe Book (example theme)
+Digital Recipe Book
 
 ## Team Members:
-- Hiruni Udara (Leader)
-- Partner's Name
+- ICT/2023/015_Binadi Silva (Leader)
+- ICT/2023/012_Anupa Perera
 
 ## Project Overview:
 This web application allows users to browse, search, and add recipes. It uses:
