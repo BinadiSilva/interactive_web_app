@@ -1,94 +1,149 @@
+/* GENERAL */
+
 body{
-font-family: Arial;
+font-family: Arial, sans-serif;
+background:#f5f5f5;
 margin:0;
-background:#f7f7f7;
+padding:0;
 }
+
+
+/* NAVBAR */
 
 .navbar{
-display:flex;
-justify-content:space-between;
-background:#ff6b6b;
-padding:15px;
-color:white;
+border-bottom:1px solid #ddd;
 }
 
-.navbar ul{
-display:flex;
-list-style:none;
+.navbar-brand{
+font-weight:bold;
+font-size:20px;
 }
 
-.navbar li{
-margin-left:20px;
+
+/* HERO IMAGE */
+
+.hero-banner img{
+height:350px;
+object-fit:cover;
 }
 
-.navbar a{
-color:white;
-text-decoration:none;
-}
 
-.hero{
-text-align:center;
-padding:50px;
-background:#ffe5d9;
-}
-
-.hero-img{
-width:80%;
-border-radius:10px;
-}
-
-.recipe-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-padding:40px;
-}
+/* CARD STYLING */
 
 .card{
-background:white;
-padding:15px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-text-align:center;
+border:none;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+border-radius:8px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
 .card img{
-width:100%;
-border-radius:10px;
+height:200px;
+object-fit:cover;
 }
 
-.btn{
-display:inline-block;
-background:#ff6b6b;
-color:white;
-padding:10px 20px;
-text-decoration:none;
-margin-top:10px;
-border-radius:5px;
+.card-title{
+font-weight:600;
 }
 
-.form-section{
-padding:40px;
-text-align:center;
+
+/* SECTION HEADINGS */
+
+h3{
+font-weight:600;
 }
 
-input, textarea, select{
-width:60%;
-padding:10px;
-margin:10px;
+
+/* SEARCH BAR */
+
+input[type="search"]{
+border-radius:20px;
 }
 
-button{
-padding:10px 20px;
-background:#ff6b6b;
-color:white;
-border:none;
-border-radius:5px;
+
+/* LARGE SEARCH SECTION */
+
+.form-control-lg{
+padding:15px;
+font-size:18px;
 }
+
+
+/* ADD RECIPE FORM */
+
+form{
+background:white;
+padding:30px;
+border-radius:8px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-label{
+font-weight:500;
+}
+
+
+/* RECIPE DETAILS */
+
+.details img{
+max-height:350px;
+object-fit:cover;
+border-radius:8px;
+}
+
+
+/* REVIEW CARDS */
+
+.card p{
+margin:0;
+}
+
+
+/* TEAM SECTION */
+
+.team img{
+border-radius:50%;
+}
+
+
+/* FOOTER */
 
 footer{
-background:#333;
+background:#222;
 color:white;
 text-align:center;
-padding:15px;
+padding:20px;
+margin-top:40px;
+}
+
+footer p{
+margin:0;
+font-size:14px;
+}
+
+
+/* SOCIAL LINKS */
+
+footer div{
+margin-bottom:8px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width:768px){
+
+.hero-banner img{
+height:200px;
+}
+
+.card img{
+height:160px;
+}
+
 }
