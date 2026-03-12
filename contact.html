@@ -1,38 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Contact</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Contact Us</title>
+
 <link rel="stylesheet" href="css/styles.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body>
 
-<header>
-<h1>Contact Us</h1>
-</header>
 
-<section class="content">
+<!-- NAVBAR -->
 
-<form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
 
-<label>Name</label>
-<input type="text" required>
+<div class="container">
 
-<label>Email</label>
-<input type="email" required>
+<a class="navbar-brand fw-bold" href="#">🍲 RecipeBook</a>
 
-<label>Message</label>
-<textarea required></textarea>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
 
-<button type="submit">Send Message</button>
+<div class="collapse navbar-collapse" id="navbarNav">
 
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link" href="recipes.html">Browse Recipe</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="recipe_details.html">Recipe Details</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="add_recipe.html">Add Recipe</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="about.html">About Us</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link active" href="contact.html">Contact Us</a>
+</li>
+
+</ul>
+
+<form class="d-flex ms-3">
+<input class="form-control" type="search" placeholder="Search">
 </form>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- PAGE TITLE -->
+
+<section class="container mt-5 text-center">
+
+<h2>Contact Us</h2>
+
+<hr>
 
 </section>
 
-<footer>
-<p>© 2026 Digital Recipe Book</p>
+
+<!-- CONTACT FORM -->
+
+<section class="container mt-4">
+
+<div class="row justify-content-center">
+
+<div class="col-md-8">
+
+<form>
+
+<div class="mb-3">
+
+<label class="form-label">Name :</label>
+
+<input type="text" class="form-control" placeholder="Enter your name">
+
+</div>
+
+
+<div class="mb-3">
+
+<label class="form-label">Email :</label>
+
+<input type="email" class="form-control" placeholder="Enter your email">
+
+</div>
+
+
+<div class="mb-4">
+
+<label class="form-label">Message :</label>
+
+<textarea class="form-control" rows="6" placeholder="Enter your message"></textarea>
+
+</div>
+
+
+<div class="text-center">
+
+<button type="submit" class="btn btn-primary px-5">Submit</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="bg-dark text-white text-center mt-5 p-4">
+
+<div class="mb-2">
+
+Facebook | Instagram | Twitter | YouTube
+
+</div>
+
+<p>© 2026 Add & Bake. All rights reserved. Designed and developed by Add & Bake.</p>
+
 </footer>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
