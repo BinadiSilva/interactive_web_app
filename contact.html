@@ -3,28 +3,42 @@
 <head>
 <title>Contact</title>
 <link rel="stylesheet" href="css/styles.css">
+<script src="js/script.js"></script>
 </head>
 
 <body>
 
 <header>
-<h1>Contact Us</h1>
+<nav class="navbar">
+
+<div class="logo">🍲 RecipeBook</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="recipes.html">Browse Recipes</a></li>
+<li><a href="add_recipe.html">Add</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+
+</nav>
 </header>
 
-<section class="content">
+<section class="form-section">
 
-<form>
+<h2>Contact Us</h2>
+
+<form id="contactForm">
 
 <label>Name</label>
-<input type="text" required>
+<input type="text" id="name" required>
 
 <label>Email</label>
-<input type="email" required>
+<input type="email" id="email" required>
 
 <label>Message</label>
 <textarea required></textarea>
 
-<button type="submit">Send Message</button>
+<button type="submit">Submit</button>
 
 </form>
 
