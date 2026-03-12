@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Recipes</title>
+<title>Browse Recipes</title>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
 <header>
-<h1>Recipes</h1>
+<nav class="navbar">
+
+<div class="logo">🍲 RecipeBook</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="recipes.html">Browse Recipes</a></li>
+<li><a href="add_recipe.html">Add</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+
+</nav>
 </header>
 
-<section>
+<section class="search">
 
-<div class="recipe-card">
+<input type="text" placeholder="Search recipes...">
+
+</section>
+
+<section class="recipe-grid">
+
+<div class="card">
 <img src="images/chicken.jpg">
 <h3>Chicken Curry</h3>
-<a href="recipe_details.html">View Recipe</a>
+<p>Spicy chicken curry.</p>
+<a href="recipe_details.html" class="btn">View Details</a>
 </div>
 
-<div class="recipe-card">
-<img src="images/rice.jpg">
-<h3>Vegetable Rice</h3>
-<a href="recipe_details.html">View Recipe</a>
-</div>
-
-<div class="recipe-card">
+<div class="card">
 <img src="images/noodles.jpg">
 <h3>Noodles</h3>
-<a href="recipe_details.html">View Recipe</a>
+<p>Quick noodle recipe.</p>
+<a href="recipe_details.html" class="btn">View Details</a>
+</div>
+
+<div class="card">
+<img src="images/rice.jpg">
+<h3>Vegetable Rice</h3>
+<p>Healthy vegetable rice.</p>
+<a href="recipe_details.html" class="btn">View Details</a>
 </div>
 
 </section>
+
+<footer>
+<p>© 2026 Digital Recipe Book</p>
+</footer>
 
 </body>
 </html>

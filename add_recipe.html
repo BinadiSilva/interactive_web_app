@@ -8,19 +8,55 @@
 
 <body>
 
-<h1>Add Recipe</h1>
+<header>
+<nav class="navbar">
 
-<form onsubmit="showMessage()">
+<div class="logo">🍲 RecipeBook</div>
 
-<input type="text" placeholder="Recipe Name" required>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="recipes.html">Browse Recipes</a></li>
+<li><a href="add_recipe.html">Add</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
 
-<textarea placeholder="Ingredients"></textarea>
+</nav>
+</header>
 
-<textarea placeholder="Cooking Steps"></textarea>
+<section class="form-section">
 
-<button type="submit">Add Recipe</button>
+<h2>Add Recipe</h2>
+
+<form id="recipeForm">
+
+<label>Recipe Name</label>
+<input type="text" id="name" required>
+
+<label>Category</label>
+<select required>
+<option>Breakfast</option>
+<option>Lunch</option>
+<option>Dinner</option>
+</select>
+
+<label>Ingredients</label>
+<textarea required></textarea>
+
+<label>Steps</label>
+<textarea required></textarea>
+
+<label>Image URL</label>
+<input type="text">
+
+<button type="submit">Submit Recipe</button>
 
 </form>
+
+</section>
+
+<footer>
+<p>© 2026 Digital Recipe Book</p>
+</footer>
 
 </body>
 </html>
