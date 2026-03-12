@@ -8,42 +8,57 @@
 <body>
 
 <header>
-<h1>🍲 Digital Recipe Book</h1>
+<nav class="navbar">
+<div class="logo">🍲 RecipeBook</div>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="recipes.html">Recipes</a>
-<a href="add_recipe.html">Add Recipe</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="login.html">Login</a>
-<a href="register.html">Register</a>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="recipes.html">Browse Recipes</a></li>
+<li><a href="add_recipe.html">Add</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
 </nav>
 </header>
 
 <section class="hero">
-<h2>Discover Delicious Recipes</h2>
-<p>Find your favorite meals and share your own recipes.</p>
+
+<img src="images/hero.jpg" class="hero-img">
+
+<h1>DIGITAL RECIPE BOOK</h1>
+
+<p>A place to discover and share delicious recipes.</p>
+
 <a href="recipes.html" class="btn">Browse Recipes</a>
+
 </section>
 
 <section class="featured">
 
 <h2>Featured Recipes</h2>
 
-<div class="recipe-card">
+<div class="recipe-grid">
+
+<div class="card">
 <img src="images/pasta.jpg">
 <h3>Creamy Pasta</h3>
+<p>Easy Italian pasta recipe.</p>
+<a href="recipe_details.html" class="btn">View Details</a>
 </div>
 
-<div class="recipe-card">
+<div class="card">
 <img src="images/friedrice.jpg">
 <h3>Fried Rice</h3>
+<p>Quick homemade fried rice.</p>
+<a href="recipe_details.html" class="btn">View Details</a>
 </div>
 
-<div class="recipe-card">
+<div class="card">
 <img src="images/salad.jpg">
 <h3>Healthy Salad</h3>
+<p>Fresh vegetable salad.</p>
+<a href="recipe_details.html" class="btn">View Details</a>
+</div>
+
 </div>
 
 </section>
