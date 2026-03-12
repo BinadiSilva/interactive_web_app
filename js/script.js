@@ -32,7 +32,6 @@ card.style.display = "none";
 });
 
 
-
 // ===============================
 // ADD RECIPE FORM VALIDATION
 // ===============================
@@ -83,7 +82,6 @@ alert("Recipe submitted successfully!");
 });
 
 
-
 // ===============================
 // CONTACT FORM VALIDATION
 // ===============================
@@ -125,7 +123,6 @@ alert("Message sent successfully!");
 }
 
 });
-
 
 
 // ===============================
