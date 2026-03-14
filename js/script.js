@@ -1,25 +1,25 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded",function(){
 
-console.log("JS working");
+let form=document.getElementById("recipeForm");
 
-let recipeForm=document.getElementById("recipeForm");
+if(form){
 
-if(recipeForm){
-
-recipeForm.addEventListener("submit",function(e){
+form.addEventListener("submit",function(e){
 
 let name=document.getElementById("name").value;
 
 if(name===""){
-alert("Recipe name required");
+
+alert("Recipe name is required");
 e.preventDefault();
+
 }
 
 });
 
 }
 
-let search=document.querySelector('input[type="search"]');
+let search=document.querySelector("input[type='search']");
 
 if(search){
 

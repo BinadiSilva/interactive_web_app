@@ -3,8 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse Recipes</title>
 
 <link rel="stylesheet" href="css/styles.css">
@@ -14,28 +13,47 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+<nav class="navbar navbar-expand-lg bg-light border-bottom">
 <div class="container">
 
-<a class="navbar-brand fw-bold" href="#">🍲 RecipeBook</a>
+<a class="navbar-brand fw-bold">LOGO</a>
 
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-<li class="nav-item"><a class="nav-link active" href="recipes.html">Browse Recipes</a></li>
-<li class="nav-item"><a class="nav-link" href="add_recipe.html">Add Recipe</a></li>
-<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+<ul class="navbar-nav mx-auto">
+
+<li class="nav-item">
+<a class="nav-link active" href="index.html">HOME</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="recipes.html">BROWSE RECIPES</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="add_recipe.html">ADD</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="contact.html">CONTACT</a>
+</li>
+
 </ul>
 
 </div>
 </nav>
 
-<section class="container mt-4">
 
-<input type="search" class="form-control" placeholder="Search recipes...">
+<div class="container mt-4">
 
-</section>
+<input type="search" class="form-control mb-4" placeholder="Search...">
 
-<section class="container mt-5">
+<div class="mb-4">
+<strong>Filter:</strong>
+
+<button class="btn btn-outline-secondary btn-sm ms-2">All</button>
+<button class="btn btn-outline-secondary btn-sm">Breakfast</button>
+<button class="btn btn-outline-secondary btn-sm">Lunch</button>
+<button class="btn btn-outline-secondary btn-sm">Dinner</button>
+</div>
 
 <div class="row g-4">
 
@@ -44,7 +62,8 @@
 <img src="https://images.unsplash.com/photo-1604908176997-4314f0d9c6f3" class="card-img-top">
 <div class="card-body text-center">
 <h5>Chicken Curry</h5>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
+<p>Short description...</p>
+<a href="recipe_details.html" class="btn btn-outline-dark">VIEW DETAILS</a>
 </div>
 </div>
 </div>
@@ -54,7 +73,8 @@
 <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" class="card-img-top">
 <div class="card-body text-center">
 <h5>Pasta</h5>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
+<p>Short description...</p>
+<a href="recipe_details.html" class="btn btn-outline-dark">VIEW DETAILS</a>
 </div>
 </div>
 </div>
@@ -64,15 +84,21 @@
 <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" class="card-img-top">
 <div class="card-body text-center">
 <h5>Salad</h5>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
+<p>Short description...</p>
+<a href="recipe_details.html" class="btn btn-outline-dark">VIEW DETAILS</a>
 </div>
 </div>
 </div>
 
 </div>
 
-</section>
+</div>
+
+<footer class="bg-light text-center mt-5 p-3 border-top">
+FOOTER - Copyright Info & Social Icons
+</footer>
 
 <script src="js/script.js"></script>
+
 </body>
 </html>

@@ -3,8 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Recipe Details</title>
 
 <link rel="stylesheet" href="css/styles.css">
@@ -14,42 +13,120 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+<nav class="navbar navbar-expand-lg bg-light border-bottom">
 <div class="container">
-<a class="navbar-brand fw-bold" href="#">🍲 RecipeBook</a>
+
+<a class="navbar-brand fw-bold">LOGO</a>
+
+<ul class="navbar-nav mx-auto">
+
+<li class="nav-item">
+<a class="nav-link active" href="index.html">HOME</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="recipes.html">BROWSE RECIPES</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="add_recipe.html">ADD</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="contact.html">CONTACT</a>
+</li>
+
+</ul>
+
 </div>
 </nav>
 
-<section class="container mt-4">
 
-<h2>Chicken Curry</h2>
+<div class="container mt-4">
 
-<img class="img-fluid rounded mt-3"
-src="https://images.unsplash.com/photo-1604908176997-4314f0d9c6f3">
+<h2 class="text-center mb-4">Recipe Name</h2>
 
-</section>
+<div class="row">
 
-<section class="container mt-4">
+<div class="col-md-6">
+<img src="https://images.unsplash.com/photo-1604908176997-4314f0d9c6f3" class="img-fluid border">
+</div>
 
-<h4>Ingredients</h4>
+<div class="col-md-6">
+
+<h5>Ingredients</h5>
 
 <ul>
-<li>Chicken</li>
-<li>Onion</li>
-<li>Garlic</li>
-<li>Spices</li>
+<li>Ingredient 1</li>
+<li>Ingredient 2</li>
+<li>Ingredient 3</li>
+<li>Ingredient 4</li>
+<li>Ingredient 5</li>
 </ul>
 
-<h4>Steps</h4>
+</div>
+
+</div>
+
+
+<div class="row mt-4">
+
+<div class="col-md-6">
+
+<div class="border p-3">
+
+<h5>Ingredients</h5>
+
+<ul>
+<li>Ingredient 1</li>
+<li>Ingredient 2</li>
+<li>Ingredient 3</li>
+<li>Ingredient 4</li>
+<li>Ingredient 5</li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6">
+
+<div class="border p-3">
+
+<h5>Instructions</h5>
 
 <ol>
-<li>Cut chicken</li>
-<li>Add spices</li>
-<li>Cook for 30 minutes</li>
+<li>Step 1</li>
+<li>Step 2</li>
+<li>Step 3</li>
+<li>Step 4</li>
+<li>Step 5</li>
 </ol>
 
-</section>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="text-center mt-4">
+
+<a href="recipes.html" class="btn btn-outline-dark">
+BACK BUTTON
+</a>
+
+</div>
+
+</div>
+
+
+<footer class="bg-light text-center mt-5 p-3 border-top">
+FOOTER - Copyright Info & Social Icons
+</footer>
 
 <script src="js/script.js"></script>
+
 </body>
 </html>
