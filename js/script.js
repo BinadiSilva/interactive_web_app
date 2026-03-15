@@ -1,48 +1,26 @@
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function(){
 
-// =============================
-// ADD RECIPE FORM VALIDATION
-// =============================
+/* =================================
+SEARCH FUNCTION (RECIPES PAGE)
+================================= */
 
-let form=document.getElementById("recipeForm");
-
-if(form){
-
-form.addEventListener("submit",function(e){
-
-let name=document.getElementById("name").value;
-
-if(name===""){
-alert("Recipe name is required");
-e.preventDefault();
-}
-
-});
-
-}
-
-
-// =============================
-// SEARCH FUNCTION (recipes page)
-// =============================
-
-let search=document.querySelector("input[type='search']");
+let search = document.getElementById("recipeSearch");
 
 if(search){
 
-search.addEventListener("keyup",function(){
+search.addEventListener("keyup", function(){
 
-let filter=search.value.toLowerCase();
-let cards=document.querySelectorAll(".card");
+let filter = search.value.toLowerCase();
+let cards = document.querySelectorAll(".recipe-card");
 
 cards.forEach(function(card){
 
-let text=card.innerText.toLowerCase();
+let text = card.innerText.toLowerCase();
 
 if(text.includes(filter)){
-card.style.display="";
+card.style.display = "";
 }else{
-card.style.display="none";
+card.style.display = "none";
 }
 
 });
@@ -52,14 +30,48 @@ card.style.display="none";
 }
 
 
-// =============================
-// RECIPE DETAILS LOADING
-// =============================
+/* =================================
+FILTER BUTTONS
+================================= */
 
-const recipes={
+let filterButtons = document.querySelectorAll(".filter-btn");
+
+filterButtons.forEach(button => {
+
+button.addEventListener("click", function(){
+
+let filter = this.dataset.filter;
+let cards = document.querySelectorAll(".recipe-card");
+
+cards.forEach(function(card){
+
+if(filter === "all"){
+card.style.display = "";
+}
+else if(card.classList.contains(filter)){
+card.style.display = "";
+}
+else{
+card.style.display = "none";
+}
+
+});
+
+});
+
+});
+
+
+/* =================================
+RECIPE DATA
+================================= */
+
+const recipes = {
 
 string_hoppers:{
 title:"String Hoppers",
+author:"Binadi",
+date:"2026-03-15",
 image:"images/string hoppers.jpg",
 ingredients:[
 "Rice flour",
@@ -69,269 +81,198 @@ ingredients:[
 "Fish curry"
 ],
 steps:[
-"Mix rice flour with hot water",
-"Press dough through string hopper maker",
-"Steam for 5 minutes",
-"Serve with sambol and curry"
+"Mix rice flour with hot water and salt to form a soft dough.",
+"Press the dough through a string hopper maker.",
+"Steam the noodles for about 5 minutes.",
+"Serve hot with coconut sambol and curry."
 ]
 },
 
 hoppers:{
 title:"Hoppers",
+author:"Anupa",
+date:"2026-03-15",
 image:"images/hoppers.jpg",
 ingredients:[
 "Rice flour",
 "Coconut milk",
 "Yeast",
-"Sugar"
+"Sugar",
+"Salt"
 ],
 steps:[
-"Prepare hopper batter",
-"Let batter ferment",
-"Pour into hopper pan",
-"Cook until crispy edges form"
+"Prepare hopper batter using rice flour and coconut milk.",
+"Allow the batter to ferment for several hours.",
+"Pour batter into a hot hopper pan.",
+"Cook until the edges become crispy."
 ]
 },
 
 kiribath:{
 title:"Milk Rice (Kiribath)",
-image:"images/milk rice.jpg",
+author:"Community",
+date:"2026-03-15",
+image:"images/milkrice.jpg",
 ingredients:[
 "Rice",
 "Coconut milk",
 "Salt"
 ],
 steps:[
-"Cook rice",
-"Add coconut milk",
-"Cook until thick",
-"Cut into pieces"
-]
-},
-
-pol_roti:{
-title:"Pol Roti",
-image:"images/roti.jpg",
-ingredients:[
-"Flour",
-"Grated coconut",
-"Salt",
-"Green chilli"
-],
-steps:[
-"Mix flour and coconut",
-"Knead dough",
-"Shape into flat discs",
-"Cook on hot pan"
-]
-},
-
-pittu:{
-title:"Pittu",
-image:"images/pittu.jpg",
-ingredients:[
-"Rice flour",
-"Coconut",
-"Salt"
-],
-steps:[
-"Mix flour with water",
-"Layer flour and coconut",
-"Steam in pittu steamer"
-]
-},
-
-rice_curry:{
-title:"Rice and Curry",
-image:"images/rice and curry.jpg",
-ingredients:[
-"Rice",
-"Dhal curry",
-"Chicken curry",
-"Vegetable curry",
-"Sambol"
-],
-steps:[
-"Cook rice",
-"Prepare curries",
-"Serve together"
-]
-},
-
-parippu:{
-title:"Parippu (Dhal Curry)",
-image:"images/parippu.jpg",
-ingredients:[
-"Red lentils",
-"Coconut milk",
-"Onion",
-"Curry leaves"
-],
-steps:[
-"Boil lentils",
-"Add coconut milk",
-"Season with spices"
+"Cook rice until soft.",
+"Add coconut milk and salt.",
+"Cook until the mixture thickens.",
+"Spread on a tray and cut into pieces."
 ]
 },
 
 chicken_curry:{
 title:"Chicken Curry",
+author:"Community",
+date:"2026-03-15",
 image:"images/chicken curry.jpg",
 ingredients:[
-"Chicken",
+"Chicken pieces",
 "Onion",
 "Garlic",
 "Curry powder",
 "Coconut milk"
 ],
 steps:[
-"Cook onions",
-"Add spices",
-"Add chicken",
-"Simmer with coconut milk"
-]
-},
-
-fish_curry:{
-title:"Fish Curry",
-image:"images/fish curry.jpg",
-ingredients:[
-"Fish",
-"Goraka",
-"Onion",
-"Spices"
-],
-steps:[
-"Prepare curry base",
-"Add fish pieces",
-"Cook until thick"
-]
-},
-
-jackfruit:{
-title:"Jackfruit Curry (Polos)",
-image:"images/jackfruit curry.jpg",
-ingredients:[
-"Young jackfruit",
-"Coconut milk",
-"Spices"
-],
-steps:[
-"Cook jackfruit with spices",
-"Add coconut milk",
-"Simmer"
-]
-},
-
-kottu:{
-title:"Kottu Roti",
-image:"images/kottu.jpg",
-ingredients:[
-"Godamba roti",
-"Chicken",
-"Egg",
-"Vegetables"
-],
-steps:[
-"Chop roti",
-"Cook vegetables",
-"Add egg and chicken",
-"Mix together"
-]
-},
-
-fried_rice:{
-title:"Fried Rice",
-image:"images/fried rice.jpg",
-ingredients:[
-"Rice",
-"Vegetables",
-"Egg",
-"Soya sauce"
-],
-steps:[
-"Heat wok",
-"Cook vegetables",
-"Add rice",
-"Stir fry"
-]
-},
-
-devilled_chicken:{
-title:"Devilled Chicken",
-image:"images/devilled chicken.jpg",
-ingredients:[
-"Chicken",
-"Onion",
-"Capsicum",
-"Chilli sauce"
-],
-steps:[
-"Fry chicken",
-"Add vegetables",
-"Add sauce",
-"Cook until thick"
-]
-},
-
-egg_roti:{
-title:"Egg Roti",
-image:"images/egg roti.jpg",
-ingredients:[
-"Godamba roti",
-"Egg",
-"Onion",
-"Green chilli"
-],
-steps:[
-"Add egg mixture to roti",
-"Fold roti",
-"Cook on pan"
-]
-},
-
-noodles:{
-title:"Vegetable Noodles",
-image:"images/noodles.jpg",
-ingredients:[
-"Noodles",
-"Vegetables",
-"Soya sauce",
-"Garlic"
-],
-steps:[
-"Boil noodles",
-"Cook vegetables",
-"Add noodles and sauce"
+"Saute onions and garlic with spices.",
+"Add chicken pieces and cook well.",
+"Pour coconut milk and simmer.",
+"Cook until the curry becomes thick and flavorful."
 ]
 }
 
 };
 
 
-// =============================
-// LOAD RECIPE DETAILS
-// =============================
+/* =================================
+LOAD RECIPE DETAILS
+================================= */
 
-const params=new URLSearchParams(window.location.search);
-const recipe=params.get("recipe");
+const params = new URLSearchParams(window.location.search);
+const recipe = params.get("recipe");
 
 if(recipe && recipes[recipe]){
 
-document.getElementById("recipeTitle").innerText=recipes[recipe].title;
-document.getElementById("recipeImage").src=recipes[recipe].image;
+document.getElementById("recipeTitle").innerText = recipes[recipe].title;
+document.getElementById("recipeAuthor").innerText = recipes[recipe].author;
+document.getElementById("recipeDate").innerText = recipes[recipe].date;
+document.getElementById("recipeImage").src = recipes[recipe].image;
 
-let ingredientsHTML="";
+let ingredientsHTML = "";
+
 recipes[recipe].ingredients.forEach(function(i){
-ingredientsHTML+=`<li>${i}</li>`;
+ingredientsHTML += `<li>${i}</li>`;
 });
-document.getElementById("recipeIngredients").innerHTML=ingredientsHTML;
 
-let stepsHTML="";
+document.getElementById("recipeIngredients").innerHTML = ingredientsHTML;
+
+let stepsHTML = "";
+
 recipes[recipe].steps.forEach(function(s){
-stepsHTML+=`<li>${s}</li>`;
+stepsHTML += `<li>${s}</li>`;
 });
-document.getElementById("recipeSteps").innerHTML=stepsHTML;
+
+document.getElementById("recipeSteps").innerHTML = stepsHTML;
+
+}
+
+
+/* =================================
+ADD REVIEW
+================================= */
+
+let reviewForm = document.getElementById("reviewForm");
+
+if(reviewForm){
+
+reviewForm.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let name = document.getElementById("reviewName").value.trim();
+let text = document.getElementById("reviewText").value.trim();
+let message = document.getElementById("reviewMessage");
+
+if(name === "" || text === ""){
+
+message.innerHTML = "⚠ Please fill all fields.";
+message.style.color = "red";
+
+return;
+
+}
+
+let review = document.createElement("div");
+review.classList.add("review-card");
+
+review.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+
+document.getElementById("reviewList").appendChild(review);
+
+message.innerHTML = "✔ Review submitted successfully!";
+message.style.color = "green";
+
+reviewForm.reset();
+
+});
+
+}
+
+
+/* =================================
+ADD RECIPE FORM
+================================= */
+
+let recipeForm = document.getElementById("recipeForm");
+
+if(recipeForm){
+
+recipeForm.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let name = document.getElementById("name").value;
+
+if(name === ""){
+alert("Recipe name is required");
+return;
+}
+
+alert("Recipe submitted successfully!");
+
+recipeForm.reset();
+
+location.reload();
+
+});
+
+}
+
+
+/* =================================
+CONTACT FORM
+================================= */
+
+let contactForm = document.getElementById("contactForm");
+
+if(contactForm){
+
+contactForm.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+alert("Message submitted successfully!");
+
+contactForm.reset();
+
+location.reload();
+
+});
 
 }
 

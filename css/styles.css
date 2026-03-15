@@ -1,4 +1,6 @@
-/* GENERAL */
+/* =================================
+GENERAL
+================================= */
 
 body{
 font-family: Arial, sans-serif;
@@ -8,7 +10,9 @@ padding:0;
 }
 
 
-/* NAVBAR */
+/* =================================
+NAVBAR
+================================= */
 
 .navbar{
 border-bottom:1px solid #ddd;
@@ -20,15 +24,9 @@ font-size:20px;
 }
 
 
-/* HERO IMAGE */
-
-.hero-banner img{
-height:350px;
-object-fit:cover;
-}
-
-
-/* CARD STYLING */
+/* =================================
+CARDS (RECIPES PAGE)
+================================= */
 
 .card{
 border:none;
@@ -39,12 +37,14 @@ transition:0.3s;
 
 .card:hover{
 transform:translateY(-5px);
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
+box-shadow:0 6px 18px rgba(0,0,0,0.2);
 }
 
 .card img{
 height:200px;
 object-fit:cover;
+border-top-left-radius:8px;
+border-top-right-radius:8px;
 }
 
 .card-title{
@@ -52,66 +52,118 @@ font-weight:600;
 }
 
 
-/* SECTION HEADINGS */
-
-h3{
-font-weight:600;
-}
-
-
-/* SEARCH BAR */
+/* =================================
+SEARCH BAR
+================================= */
 
 input[type="search"]{
-border-radius:20px;
+border-radius:25px;
+padding:10px;
 }
 
 
-/* LARGE SEARCH SECTION */
-
-.form-control-lg{
-padding:15px;
-font-size:18px;
-}
-
-
-/* ADD RECIPE FORM */
+/* =================================
+FORMS (ADD RECIPE + CONTACT)
+================================= */
 
 form{
 background:white;
-padding:30px;
+padding:25px;
 border-radius:8px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
 .form-label{
 font-weight:500;
 }
 
+textarea{
+resize:none;
+}
 
-/* RECIPE DETAILS */
 
-.details img{
-max-height:350px;
-object-fit:cover;
+/* =================================
+RECIPE DETAILS PAGE
+(only affects recipe_details.html)
+================================= */
+
+.recipe-page{
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+/* Recipe Image */
+
+.recipe-page .recipe-img{
+width:260px;
+max-width:100%;
+border-radius:10px;
+box-shadow:0 6px 18px rgba(0,0,0,0.2);
+}
+
+
+/* Ingredients */
+
+.recipe-page .ingredient-list{
+list-style:none;
+padding:0;
+}
+
+.recipe-page .ingredient-list li{
+background:#f8f8f8;
+padding:10px;
+margin-bottom:8px;
+border-radius:6px;
+}
+
+
+/* Cooking Steps */
+
+.recipe-page .steps-box{
+background:#fafafa;
+padding:20px;
 border-radius:8px;
 }
 
-
-/* REVIEW CARDS */
-
-.card p{
-margin:0;
+.recipe-page .steps-box li{
+margin-bottom:10px;
 }
 
 
-/* TEAM SECTION */
+/* Recipe Meta */
 
-.team img{
-border-radius:50%;
+.recipe-page .recipe-meta{
+font-size:14px;
+color:#777;
 }
 
 
-/* FOOTER */
+/* Rating */
+
+.recipe-page .rating{
+font-size:22px;
+color:#f39c12;
+margin-bottom:10px;
+}
+
+
+/* Reviews */
+
+.recipe-page .review-card{
+background:#fafafa;
+padding:15px;
+margin-bottom:10px;
+border-radius:6px;
+box-shadow:0 2px 5px rgba(0,0,0,0.08);
+}
+
+
+/* =================================
+FOOTER
+================================= */
 
 footer{
 background:#222;
@@ -127,23 +179,36 @@ font-size:14px;
 }
 
 
-/* SOCIAL LINKS */
+/* =================================
+BUTTONS
+================================= */
 
-footer div{
-margin-bottom:8px;
+.btn-outline-dark{
+border-radius:25px;
+padding:6px 16px;
+}
+
+.btn-primary{
+border-radius:25px;
 }
 
 
-/* RESPONSIVE */
+/* =================================
+RESPONSIVE
+================================= */
 
 @media (max-width:768px){
 
-.hero-banner img{
-height:200px;
-}
-
 .card img{
 height:160px;
+}
+
+.recipe-page{
+padding:25px;
+}
+
+.recipe-page .recipe-img{
+width:200px;
 }
 
 }
