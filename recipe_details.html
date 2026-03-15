@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Recipe Details</title>
 
 <link rel="stylesheet" href="css/styles.css">
@@ -29,39 +30,18 @@
 
 <ul class="navbar-nav ms-auto">
 
-<li class="nav-item">
-<a class="nav-link" href="index.html">Home</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="recipes.html">Browse Recipes</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="add_recipe.html">Add Recipe</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="about.html">About Us</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="contact.html">Contact Us</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="recipes.html">Browse Recipes</a></li>
+<li class="nav-item"><a class="nav-link" href="add_recipe.html">Add</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 
 </ul>
 
-<form class="d-flex ms-3">
-<input class="form-control" type="search" placeholder="Search">
-</form>
-
 </div>
-
 </div>
-
 </nav>
 
-<!-- RECIPE DETAILS -->
+<!-- RECIPE TITLE -->
 
 <div class="container mt-4">
 
@@ -69,24 +49,31 @@
 Recipe Name
 </h2>
 
-<div class="row">
+<hr>
+
+<!-- IMAGE + INGREDIENT LIST -->
+
+<div class="row align-items-center">
 
 <div class="col-md-6">
 
 <img id="recipeImage"
+src="images/chicken curry.jpg"
 class="img-fluid border rounded">
 
 </div>
 
 <div class="col-md-6">
 
-<h5>Ingredients</h5>
+<h4>Ingredients</h4>
 
 <ul id="recipeIngredients">
 
 <li>Ingredient 1</li>
 <li>Ingredient 2</li>
 <li>Ingredient 3</li>
+<li>Ingredient 4</li>
+<li>Ingredient 5</li>
 
 </ul>
 
@@ -94,9 +81,31 @@ class="img-fluid border rounded">
 
 </div>
 
+<!-- INGREDIENT + INSTRUCTIONS BOXES -->
+
 <div class="row mt-4">
 
-<div class="col-md-12">
+<div class="col-md-6">
+
+<div class="border p-3">
+
+<h5>Ingredients</h5>
+
+<ul id="recipeIngredientsBox">
+
+<li>Ingredient 1</li>
+<li>Ingredient 2</li>
+<li>Ingredient 3</li>
+<li>Ingredient 4</li>
+<li>Ingredient 5</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
 
 <div class="border p-3">
 
@@ -107,6 +116,8 @@ class="img-fluid border rounded">
 <li>Step 1</li>
 <li>Step 2</li>
 <li>Step 3</li>
+<li>Step 4</li>
+<li>Step 5</li>
 
 </ol>
 
@@ -116,10 +127,56 @@ class="img-fluid border rounded">
 
 </div>
 
+<hr class="mt-4">
+
+<!-- SECOND INSTRUCTION SECTION -->
+
+<h4 class="text-center mt-4">Instructions</h4>
+
+<div class="row mt-3">
+
+<div class="col-md-6">
+
+<div class="border p-3">
+
+<ol id="recipeStepsLeft">
+
+<li>Step 1</li>
+<li>Step 2</li>
+<li>Step 3</li>
+<li>Step 4</li>
+
+</ol>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="border p-3">
+
+<ol id="recipeStepsRight">
+
+<li>Step 1</li>
+<li>Step 2</li>
+<li>Step 3</li>
+<li>Step 4</li>
+
+</ol>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BACK BUTTON -->
+
 <div class="text-center mt-4">
 
 <a href="recipes.html" class="btn btn-outline-dark">
-Back to Recipes
+BACK BUTTON
 </a>
 
 </div>
@@ -131,14 +188,17 @@ Back to Recipes
 <footer class="bg-dark text-white text-center mt-5 p-4">
 
 <div class="mb-2">
-Facebook | Instagram | Twitter | YouTube
+
+<i class="bi bi-facebook"></i>
+<i class="bi bi-instagram"></i>
+<i class="bi bi-twitter"></i>
+<i class="bi bi-youtube"></i>
+
 </div>
 
-<p>© 2026 Add & Bake. All rights reserved.</p>
+<p>© 2026 Add & Bake. All rights reserved. Designed and developed by Add & Bake.</p>
 
 </footer>
-
-<!-- SCRIPT FILE -->
 
 <script src="js/script.js"></script>
 
