@@ -2,10 +2,8 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Recipe Details</title>
 
 <link rel="stylesheet" href="css/styles.css">
@@ -21,7 +19,7 @@
 
 <div class="container">
 
-<a class="navbar-brand fw-bold" href="#">🍲 RecipeBook</a>
+<a class="navbar-brand fw-bold" href="#">AddnBake</a>
 
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 <span class="navbar-toggler-icon"></span>
@@ -36,11 +34,7 @@
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="recipes.html">Browse Recipe</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link active" href="recipe_details.html">Recipe Details</a>
+<a class="nav-link" href="recipes.html">Browse Recipes</a>
 </li>
 
 <li class="nav-item">
@@ -57,158 +51,132 @@
 
 </ul>
 
-<form class="d-flex ms-3">
-<input class="form-control" type="search" placeholder="Search">
-</form>
-
 </div>
 
 </div>
 
 </nav>
 
-<!-- RECIPE TITLE -->
 
-<section class="container mt-4">
+<!-- RECIPE DETAILS -->
 
-<h2>Chicken Curry</h2>
+<div class="container mt-5 recipe-page">
 
-<p>⭐ ⭐ ⭐ ⭐ ☆</p>
+<h2 class="text-center mb-2" id="recipeTitle"></h2>
 
-<div class="d-flex align-items-center mb-3">
+<div class="text-center rating mb-2">
+⭐⭐⭐⭐☆
+</div>
 
-<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="35" class="me-2">
+<div class="text-center recipe-meta mb-4">
+Submitted by <strong id="recipeAuthor"></strong> |
+Date: <span id="recipeDate"></span>
+</div>
 
-<span>Submitted by Anupa</span>
+<hr>
+
+<div class="row align-items-center">
+
+<!-- RECIPE IMAGE -->
+
+<div class="col-md-6 text-center">
+
+<img id="recipeImage" class="recipe-img img-fluid">
+
+</div>
+
+<!-- INGREDIENTS -->
+
+<div class="col-md-6">
+
+<h4 class="mb-3">Ingredients</h4>
+
+<ul id="recipeIngredients" class="ingredient-list"></ul>
+
+</div>
 
 </div>
 
 <hr>
 
-</section>
+<!-- COOKING INSTRUCTIONS -->
 
-<!-- IMAGE + NUTRITION -->
+<h4 class="text-center mb-3">Cooking Instructions</h4>
 
-<section class="container">
+<div class="steps-box">
 
-<div class="row g-4">
-
-<div class="col-md-6">
-
-<img class="img-fluid rounded"
-src="https://images.unsplash.com/photo-1604908176997-4314f0d9c6f3">
+<ol id="recipeSteps"></ol>
 
 </div>
 
-<div class="col-md-6">
 
-<div class="card p-3">
+<!-- REVIEWS SECTION -->
 
-<h5>Nutrition Info</h5>
+<div class="reviews-section mt-5">
 
-<ul>
-<li>Calories: 450 kcal</li>
-<li>Protein: 30g</li>
-<li>Fat: 18g</li>
-<li>Carbohydrates: 40g</li>
-</ul>
+<h4 class="text-center mb-4">Recipe Reviews</h4>
 
+<div id="reviewList">
+
+<div class="review-card">
+<strong>Kasun</strong>
+<p>Very delicious recipe. Easy to cook!</p>
 </div>
 
-</div>
-
-</div>
-
-</section>
-
-<!-- INGREDIENTS + DIRECTIONS -->
-
-<section class="container mt-4">
-
-<div class="row g-4">
-
-<div class="col-md-6">
-
-<div class="card p-3">
-
-<h5>Ingredients</h5>
-
-<ul>
-<li>500g Chicken</li>
-<li>1 Onion</li>
-<li>2 Garlic cloves</li>
-<li>Spices</li>
-<li>Salt</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="col-md-6">
-
-<div class="card p-3">
-
-<h5>Directions</h5>
-
-<p><strong>Ready In:</strong> 40 Minutes</p>
-
-<ol>
-<li>Cut the chicken into pieces</li>
-<li>Cook onions and garlic</li>
-<li>Add spices</li>
-<li>Add chicken and cook</li>
-<li>Simmer for 30 minutes</li>
-</ol>
-
+<div class="review-card">
+<strong>Nadeesha</strong>
+<p>Authentic Sri Lankan taste. My family loved it.</p>
 </div>
 
 </div>
 
 </div>
 
-</section>
 
-<!-- REVIEWS -->
+<form id="reviewForm">
 
-<section class="container mt-5">
+<div class="mb-3">
+<input type="text" id="reviewName" class="form-control" placeholder="Your Name" required>
+</div>
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="mb-3">
+<textarea id="reviewText" class="form-control" rows="3" placeholder="Write your review..." required></textarea>
+</div>
 
-<h4>Reviews</h4>
+<!-- MESSAGE AREA -->
 
-<button class="btn btn-primary">Write a Review</button>
+<div id="reviewMessage" class="text-center mb-3"></div>
+
+<div class="text-center">
+<button type="submit" class="btn btn-dark">Submit Review</button>
+</div>
+
+</form>
+
+
+<!-- BACK BUTTON -->
+
+<div class="text-center mt-4">
+
+<a href="recipes.html" class="btn btn-outline-dark">
+← Back to Recipes
+</a>
 
 </div>
 
-<div class="card p-3 mb-3">
-<p><strong>Review 1</strong></p>
-<p>Very tasty recipe! Easy to cook.</p>
 </div>
 
-<div class="card p-3 mb-3">
-<p><strong>Review 2</strong></p>
-<p>My family loved it.</p>
-</div>
-
-<div class="card p-3 mb-3">
-<p><strong>Review 3</strong></p>
-<p>Perfect spice level.</p>
-</div>
-
-</section>
 
 <!-- FOOTER -->
 
 <footer class="bg-dark text-white text-center mt-5 p-4">
 
-<div class="mb-2">
-Facebook | Instagram | Twitter | YouTube
-</div>
-
-<p>© 2026 Add & Bake. All rights reserved. Designed and developed by Add & Bake.</p>
+<p>© 2026 Add & Bake. All rights reserved.</p>
 
 </footer>
+
+
+<!-- SCRIPTS -->
 
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -3,12 +3,10 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse Recipes</title>
 
 <link rel="stylesheet" href="css/styles.css">
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -21,7 +19,7 @@
 
 <div class="container">
 
-<a class="navbar-brand fw-bold" href="#">🍲 RecipeBook</a>
+<a class="navbar-brand fw-bold" href="#">AddnBake</a>
 
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 <span class="navbar-toggler-icon"></span>
@@ -36,10 +34,8 @@
 </li>
 
 <li class="nav-item">
-<a class="nav-link active" href="recipes.html">Browse Recipe</a>
+<a class="nav-link active" href="recipes.html">Browse Recipes</a>
 </li>
-
-
 
 <li class="nav-item">
 <a class="nav-link" href="add_recipe.html">Add Recipe</a>
@@ -55,130 +51,207 @@
 
 </ul>
 
-<form class="d-flex ms-3">
-<input class="form-control" type="search" placeholder="Search">
-</form>
-
 </div>
-
 </div>
-
 </nav>
 
-<!-- TOP IMAGE -->
 
-<section class="container mt-4">
+<!-- PAGE CONTENT -->
 
-<img class="img-fluid w-100 rounded"
-src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
-
-</section>
+<div class="container mt-4">
 
 <!-- SEARCH BAR -->
 
-<section class="container mt-4">
+<input type="search" id="recipeSearch" class="form-control mb-4" placeholder="Search recipes...">
 
-<input type="text" class="form-control" placeholder="Search recipes...">
 
-</section>
+<!-- FILTER BUTTONS -->
+
+<div class="mb-4">
+
+<strong>Filter:</strong>
+
+<button class="btn btn-outline-secondary btn-sm filter-btn ms-2" data-filter="all">All</button>
+<button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="breakfast">Breakfast</button>
+<button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="lunch">Lunch</button>
+<button class="btn btn-outline-secondary btn-sm filter-btn" data-filter="dinner">Dinner</button>
+
+</div>
+
 
 <!-- RECIPE GRID -->
 
-<section class="container mt-5">
-
 <div class="row g-4">
 
-<div class="col-md-4">
+<!-- BREAKFAST RECIPES -->
+
+<div class="col-md-4 recipe-card breakfast">
+
 <div class="card">
-<img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" class="card-img-top">
+
+<img src="images/string hoppers.jpg" class="card-img-top">
+
 <div class="card-body text-center">
-<h5 class="card-title">Italian Pasta</h5>
-<p>⭐⭐⭐⭐☆</p>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
-</div>
-</div>
+
+<h5>String Hoppers</h5>
+
+<p>Traditional rice noodles served with coconut sambol.</p>
+
+<a href="recipe_details.html?recipe=string_hoppers" class="btn btn-outline-dark">
+VIEW DETAILS
+</a>
+
 </div>
 
-<div class="col-md-4">
+</div>
+
+</div>
+
+
+
+<div class="col-md-4 recipe-card breakfast">
+
 <div class="card">
-<img src="https://images.unsplash.com/photo-1604908176997-4314f0d9c6f3" class="card-img-top">
+
+<img src="images/hoppers.jpg" class="card-img-top">
+
 <div class="card-body text-center">
-<h5 class="card-title">Chicken Curry</h5>
-<p>⭐⭐⭐⭐⭐</p>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
-</div>
-</div>
+
+<h5>Hoppers</h5>
+
+<p>Fermented rice flour bowl shaped pancakes.</p>
+
+<a href="recipe_details.html?recipe=hoppers" class="btn btn-outline-dark">
+VIEW DETAILS
+</a>
+
 </div>
 
-<div class="col-md-4">
+</div>
+
+</div>
+
+
+
+<!-- LUNCH RECIPES -->
+
+<div class="col-md-4 recipe-card lunch">
+
 <div class="card">
-<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" class="card-img-top">
+
+<img src="images/chicken curry.jpg" class="card-img-top">
+
 <div class="card-body text-center">
-<h5 class="card-title">Healthy Salad</h5>
-<p>⭐⭐⭐⭐☆</p>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
-</div>
-</div>
+
+<h5>Chicken Curry</h5>
+
+<p>Spicy Sri Lankan chicken curry cooked with coconut milk.</p>
+
+<a href="recipe_details.html?recipe=chicken_curry" class="btn btn-outline-dark">
+VIEW DETAILS
+</a>
+
 </div>
 
-<div class="col-md-4">
+</div>
+
+</div>
+
+
+
+<div class="col-md-4 recipe-card lunch">
+
 <div class="card">
-<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" class="card-img-top">
+
+<img src="images/fish curry.jpg" class="card-img-top">
+
 <div class="card-body text-center">
-<h5 class="card-title">Pizza</h5>
-<p>⭐⭐⭐⭐⭐</p>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
-</div>
-</div>
+
+<h5>Fish Curry</h5>
+
+<p>Traditional Sri Lankan fish curry with goraka.</p>
+
+<a href="recipe_details.html?recipe=fish_curry" class="btn btn-outline-dark">
+VIEW DETAILS
+</a>
+
 </div>
 
-<div class="col-md-4">
+</div>
+
+</div>
+
+
+
+<!-- DINNER RECIPES -->
+
+<div class="col-md-4 recipe-card dinner">
+
 <div class="card">
-<img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b" class="card-img-top">
+
+<img src="images/kottu rotti.webp" class="card-img-top">
+
 <div class="card-body text-center">
-<h5 class="card-title">Spicy Noodles</h5>
-<p>⭐⭐⭐⭐☆</p>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
-</div>
-</div>
+
+<h5>Kottu Roti</h5>
+
+<p>Popular Sri Lankan street food made with chopped roti.</p>
+
+<a href="recipe_details.html?recipe=kottu" class="btn btn-outline-dark">
+VIEW DETAILS
+</a>
+
 </div>
 
-<div class="col-md-4">
+</div>
+
+</div>
+
+
+
+<div class="col-md-4 recipe-card dinner">
+
 <div class="card">
-<img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d" class="card-img-top">
+
+<img src="images/fried rice.jpg" class="card-img-top">
+
 <div class="card-body text-center">
-<h5 class="card-title">Burger</h5>
-<p>⭐⭐⭐⭐☆</p>
-<a href="recipe_details.html" class="btn btn-primary">View</a>
-</div>
-</div>
-</div>
+
+<h5>Fried Rice</h5>
+
+<p>Rice stir‑fried with vegetables and egg.</p>
+
+<a href="recipe_details.html?recipe=fried_rice" class="btn btn-outline-dark">
+VIEW DETAILS
+</a>
 
 </div>
 
-</section>
+</div>
 
-<!-- SEARCH SUGGESTION BAR -->
+</div>
 
-<section class="container mt-5">
 
-<input type="text" class="form-control form-control-lg rounded-pill" placeholder="I WANT TO MAKE......">
+</div>
 
-</section>
+</div>
+
 
 <!-- FOOTER -->
 
 <footer class="bg-dark text-white text-center mt-5 p-4">
 
-<div class="mb-2">
-Facebook | Instagram | Twitter | YouTube
-</div>
-
-<p>© 2026 Add & Bake. All rights reserved. Designed and developed by Add & Bake.</p>
+<p>© 2026 Add & Bake. All rights reserved.</p>
 
 </footer>
+
+
+<!-- SCRIPTS -->
+
+<script src="js/script.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
