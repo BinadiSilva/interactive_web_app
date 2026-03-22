@@ -277,3 +277,39 @@ location.reload();
 }
 
 });
+
+/* =================================
+SHOW PROFILE ICON + USERNAME
+================================= */
+
+let loginNav = document.getElementById("loginNav");
+let profileNav = document.getElementById("profileNav");
+let navUserName = document.getElementById("navUserName");
+
+let loggedIn = localStorage.getItem("loggedIn");
+let user = JSON.parse(localStorage.getItem("user"));
+
+if(loggedIn){
+
+if(loginNav) loginNav.style.display = "none";
+if(profileNav) profileNav.classList.remove("d-none");
+if(navUserName && user) navUserName.innerText = user.name;
+
+}
+
+/* =================================
+PROTECT PAGES
+================================= */
+
+function checkLogin(){
+
+let loggedIn = localStorage.getItem("loggedIn");
+
+if(!loggedIn){
+window.location = "login.html";
+return false;
+}
+
+return true;
+
+}
