@@ -3,8 +3,8 @@ session_start();
 include("../includes/db.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
+    $email = trim($_POST["email"] ?? "");
+    $password = trim($_POST["password"] ?? "");
 
     if (empty($email) || empty($password)) {
         $_SESSION['login_message'] = "Please fill all fields.";
@@ -29,19 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             header("Location: ../profile.php");
             exit();
-        } else {
-            $_SESSION['login_message'] = "Invalid email or password.";
-            $_SESSION['login_message_type'] = "error";
-            header("Location: ../login.php");
-            exit();
         }
-    } else {
-        $_SESSION['login_message'] = "Invalid email or password.";
-        $_SESSION['login_message_type'] = "error";
-        header("Location: ../login.php");
-        exit();
     }
-} else {
+
+    $_SESSION['login_message'] = "Invalid email or password.";
+    $_SESSION['login_message_type'] = "error";
     header("Location: ../login.php");
     exit();
 }
+
+header("Location: ../login.php");
+exit();
+?>

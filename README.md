@@ -1,32 +1,116 @@
-# Interactive Web Application
+# 🍽️ Add & Bake – Recipe Web Application
 
-## Project Theme:
-Digital Recipe Book
+## 📌 Project Overview
+Add & Bake is a web-based recipe sharing platform where users can:
+- Register and login
+- Add their own recipes
+- Browse recipes
+- View recipe details
+- Submit reviews
+- Send messages via contact form
 
-## Team Members:
-- ICT/2023/015_Binadi Silva (Leader)
-- ICT/2023/012_Anupa Perera
+This project is developed using:
+- Frontend: HTML, CSS, Bootstrap, JavaScript
+- Backend: PHP
+- Database: MySQL
 
-## Project Overview:
-This web application allows users to browse, search, and add recipes. It uses:
-- HTML, CSS, Bootstrap for layout and design
-- JavaScript for interactivity (dynamic content, form validation, etc.)
+---
 
-## Project Phases:
-1. **Phase 1 – Proposal & Wireframes**  
-   - Wireframes for Home, Features, Contact pages  
-   - Project proposal document  
+## ⚙️ How to Run the Project
 
-2. **Phase 2 – Layout**  
-   - Responsive HTML/CSS design  
-   - Bootstrap components (cards, modals, navbar)  
+### 1. Setup XAMPP
+- Install XAMPP
+- Start **Apache** and **MySQL**
 
-3. **Phase 3 – Interactivity**  
-   - JavaScript dynamic updates  
-   - Form validation and animations
+### 2. Copy Project
+- Place project folder inside:
+htdocs/
 
-## Repository Structure:
-css/
-js/
-images/
-README.md
+### 3. Import Database
+- Open **phpMyAdmin**
+- Click **Import**
+- Select `database.sql`
+- Click **Go**
+
+### 4. Run Project
+Open browser and go to:
+http://localhost/interactive_web_app/
+
+---
+
+## 🔐 Features
+
+### User Authentication
+- Register new users
+- Login with email and password
+- Logout functionality
+
+### Recipe Management
+- Add new recipes
+- View all recipes
+- View recipe details
+
+### Reviews
+- Users can submit reviews for recipes
+- Reviews are stored and displayed
+
+### Contact Form
+- Users can send messages
+- Messages stored in database
+
+### Profile
+- View user details
+- Change password
+- View added recipes and reviews
+
+---
+
+## 🗄️ Database Tables
+- users
+- recipes
+- reviews
+- messages
+
+---
+
+## 🧪 Testing Checklist
+- ✅ Register user
+- ✅ Login
+- ✅ Logout
+- ✅ Add recipe
+- ✅ View recipes
+- ✅ Add review
+- ✅ Contact form submission
+- ✅ Profile page
+
+---
+
+## 📁 Project Structure
+/interactive_web_app
+│── /auth
+│── /includes
+│── /css
+│── /js
+│── /images
+│── index.php
+│── login.php
+│── register.php
+│── profile.php
+│── recipes.php
+│── recipe_details.php
+│── add_recipe.php
+│── contact.php
+│── database.sql
+
+---
+
+## 👨‍💻 Authors
+- Binadi Silva
+- Anupa Perera
+
+---
+
+## 📌 Notes
+- Use XAMPP to run the project
+- Import `database.sql` before running
+- Register a new user for testing login

@@ -1,12 +1,45 @@
-<?php include("includes/auth_check.php"); ?>
+<?php
+include("includes/auth_check.php");
+include("includes/db.php");
+
+$name = $_SESSION['username'] ?? "";
+$email = $_SESSION['email'] ?? "";
+$message = "";
+$message_type = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name = trim($_POST["name"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+    $user_message = trim($_POST["message"] ?? "");
+
+    if (empty($name) || empty($email) || empty($user_message)) {
+        $message = "Please fill all fields.";
+        $message_type = "error";
+    } else {
+        $sql = "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $name, $email, $user_message);
+
+        if ($stmt->execute()) {
+            $message = "Message submitted successfully.";
+            $message_type = "success";
+        } else {
+            $message = "Failed to submit message.";
+            $message_type = "error";
+        }
+
+        $stmt->close();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Contact Us</title>
-<link rel="stylesheet" href="css/styles.css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -38,23 +71,29 @@
 <section class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <form id="contactForm" class="site-form">
+      <form method="POST" action="" class="site-form">
         <div class="mb-3">
           <label class="form-label">Name</label>
-          <input type="text" id="contactName" class="form-control" placeholder="Enter your name" required />
+          <input type="text" name="name" class="form-control" placeholder="Enter your name" value="<?php echo htmlspecialchars($name); ?>" required />
         </div>
 
         <div class="mb-3">
           <label class="form-label">Email</label>
-          <input type="email" id="contactEmail" class="form-control" placeholder="Enter your email" required />
+          <input type="email" name="email" class="form-control" placeholder="Enter your email" value="<?php echo htmlspecialchars($email); ?>" required />
         </div>
 
         <div class="mb-4">
           <label class="form-label">Message</label>
-          <textarea id="contactMessage" class="form-control" rows="6" placeholder="Enter your message" required></textarea>
+          <textarea name="message" class="form-control" rows="6" placeholder="Enter your message" required></textarea>
         </div>
 
-        <div id="contactFormMessage" class="form-message mb-3"></div>
+        <?php if (!empty($message)): ?>
+          <div class="form-message mb-3 <?php echo $message_type === 'success' ? 'success-text' : 'error-text'; ?>">
+            <?php echo htmlspecialchars($message); ?>
+          </div>
+        <?php else: ?>
+          <div class="form-message mb-3"></div>
+        <?php endif; ?>
 
         <div class="text-center">
           <button type="submit" class="btn btn-primary px-5">Submit</button>
@@ -68,7 +107,6 @@
   <p>© 2026 Add & Bake. All rights reserved.</p>
 </footer>
 
-<script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

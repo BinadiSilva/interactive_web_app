@@ -8,8 +8,8 @@ $message_type = "";
 
 /* CHANGE PASSWORD */
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["change_password"])) {
-    $new_password = trim($_POST["newPassword"]);
-    $confirm_password = trim($_POST["confirmPassword"]);
+    $new_password = trim($_POST["newPassword"] ?? "");
+    $confirm_password = trim($_POST["confirmPassword"] ?? "");
 
     if (empty($new_password) || empty($confirm_password)) {
         $message = "Please fill both password fields.";
@@ -44,6 +44,13 @@ $user_stmt->execute();
 $user_result = $user_stmt->get_result();
 $user = $user_result->fetch_assoc();
 $user_stmt->close();
+
+if (!$user) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
 
 /* GET USER RECIPES */
 $recipes = [];
@@ -82,14 +89,13 @@ if ($table_check && $table_check->num_rows > 0) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>My Profile | RecipeBook</title>
-<link rel="stylesheet" href="css/styles.css" />
-<link rel="stylesheet" href="css/profile.css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | RecipeBook</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -106,7 +112,7 @@ if ($table_check && $table_check->num_rows > 0) {
         <li class="nav-item"><a class="nav-link" href="recipes.php">Browse Recipes</a></li>
         <li class="nav-item"><a class="nav-link" href="add_recipe.php">Add Recipe</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="profile.php">Profile</a></li>
+        <li class="nav-item"><a class="nav-link active" href="profile.php">Profile</a></li>
         <li class="nav-item ms-2"><a class="btn btn-danger btn-sm" href="auth/logout.php">Logout</a></li>
       </ul>
     </div>
@@ -178,7 +184,7 @@ if ($table_check && $table_check->num_rows > 0) {
 
           <?php if (!empty($message)): ?>
             <div class="form-message mb-4 <?php echo $message_type === 'success' ? 'success-text' : 'error-text'; ?>">
-              <?php echo $message; ?>
+              <?php echo htmlspecialchars($message); ?>
             </div>
           <?php else: ?>
             <div class="form-message mb-4"></div>

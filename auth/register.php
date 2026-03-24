@@ -3,13 +3,12 @@ session_start();
 include("../includes/db.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $username = trim($_POST["username"]);
-    $email = trim($_POST["email"]);
-    $address = trim($_POST["address"]);
-    $phone = trim($_POST["phone"]);
-    $photo = trim($_POST["photo"]);
-    $password = trim($_POST["password"]);
+    $username = trim($_POST["username"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+    $address = trim($_POST["address"] ?? "");
+    $phone = trim($_POST["phone"] ?? "");
+    $photo = trim($_POST["photo"] ?? "");
+    $password = trim($_POST["password"] ?? "");
 
     if (empty($username) || empty($email) || empty($address) || empty($phone) || empty($password)) {
         $_SESSION['register_message'] = "Please fill all required fields.";
@@ -33,11 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (username, email, address, phone, photo, password)
-            VALUES (?, ?, ?, ?, ?, ?)";
-
+    $sql = "INSERT INTO users (username, email, password, address, phone, photo) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssss", $username, $email, $address, $phone, $photo, $hashed_password);
+    $stmt->bind_param("ssssss", $username, $email, $hashed_password, $address, $phone, $photo);
 
     if ($stmt->execute()) {
         $_SESSION['user_id'] = $stmt->insert_id;
@@ -46,10 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: ../profile.php");
         exit();
-    } else {
-        $_SESSION['register_message'] = "Registration failed.";
-        $_SESSION['register_message_type'] = "error";
-        header("Location: ../register.php");
-        exit();
     }
+
+    $_SESSION['register_message'] = "Registration failed.";
+    $_SESSION['register_message_type'] = "error";
+    header("Location: ../register.php");
+    exit();
 }
+
+header("Location: ../register.php");
+exit();
+?>

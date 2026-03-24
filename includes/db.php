@@ -1,12 +1,12 @@
 <?php
 $host = "localhost";
-$dbname = "recipe_book";
 $username = "root";
 $password = "";
+$database = "recipe_book";
 
-$conn = new mysqli($host, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $password, $database);
 
 if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>

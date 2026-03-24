@@ -1,4 +1,38 @@
-<?php include("includes/auth_check.php"); ?>
+<?php
+include("includes/auth_check.php");
+include("includes/db.php");
+
+$user_id = $_SESSION['user_id'];
+$message = "";
+$message_type = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name = trim($_POST["name"] ?? "");
+    $category = trim($_POST["category"] ?? "");
+    $ingredients = trim($_POST["ingredients"] ?? "");
+    $steps = trim($_POST["steps"] ?? "");
+    $image = trim($_POST["imageUrl"] ?? "");
+
+    if (empty($name) || empty($category) || empty($ingredients) || empty($steps)) {
+        $message = "Please fill all required fields.";
+        $message_type = "error";
+    } else {
+        $sql = "INSERT INTO recipes (title, category, ingredients, instructions, image, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssssi", $name, $category, $ingredients, $steps, $image, $user_id);
+
+        if ($stmt->execute()) {
+            $message = "Recipe submitted successfully.";
+            $message_type = "success";
+        } else {
+            $message = "Failed to submit recipe.";
+            $message_type = "error";
+        }
+
+        $stmt->close();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,15 +67,15 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Add Recipe</h2>
 
-  <form id="recipeForm" class="site-form">
+  <form method="POST" action="" class="site-form">
     <div class="mb-3">
       <label class="form-label">Recipe Name</label>
-      <input type="text" class="form-control" id="name" required />
+      <input type="text" class="form-control" name="name" required />
     </div>
 
     <div class="mb-3">
       <label class="form-label">Category</label>
-      <select class="form-control" id="category" required>
+      <select class="form-control" name="category" required>
         <option value="">Select Category</option>
         <option value="Breakfast">Breakfast</option>
         <option value="Lunch">Lunch</option>
@@ -51,20 +85,26 @@
 
     <div class="mb-3">
       <label class="form-label">Ingredients</label>
-      <textarea class="form-control" id="ingredients" rows="4" required></textarea>
+      <textarea class="form-control" name="ingredients" rows="4" required></textarea>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Steps</label>
-      <textarea class="form-control" id="steps" rows="4" required></textarea>
+      <textarea class="form-control" name="steps" rows="4" required></textarea>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Image URL (optional)</label>
-      <input type="text" class="form-control" id="imageUrl" />
+      <input type="text" class="form-control" name="imageUrl" />
     </div>
 
-    <div id="recipeMessage" class="form-message mb-3"></div>
+    <?php if (!empty($message)): ?>
+      <div class="form-message mb-3 <?php echo $message_type === 'success' ? 'success-text' : 'error-text'; ?>">
+        <?php echo htmlspecialchars($message); ?>
+      </div>
+    <?php else: ?>
+      <div class="form-message mb-3"></div>
+    <?php endif; ?>
 
     <div class="text-center">
       <button type="submit" class="btn btn-outline-dark">SUBMIT RECIPE</button>
@@ -76,7 +116,6 @@
   <p>© 2026 Add & Bake. All rights reserved.</p>
 </footer>
 
-<script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
