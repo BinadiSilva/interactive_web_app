@@ -169,6 +169,21 @@ footer p{
   border-radius:25px;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
 @media (max-width:768px){
   .card img{
     height:160px;

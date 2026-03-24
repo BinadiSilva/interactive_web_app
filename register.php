@@ -50,7 +50,7 @@ if (isset($_SESSION['register_message'])) {
 </div>
 <?php endif; ?>
 
-<form method="POST" action="auth/register.php">
+<form method="POST" action="auth/register.php" enctype="multipart/form-data">
 
 <div class="mb-3">
 <label class="form-label">Username</label>
@@ -73,8 +73,8 @@ if (isset($_SESSION['register_message'])) {
 </div>
 
 <div class="mb-3">
-<label class="form-label">Profile Photo URL (Optional)</label>
-<input type="text" name="photo" class="form-control">
+  <label class="form-label">Profile Photo</label>
+  <input type="file" name="photo" class="form-control" accept="image/*">
 </div>
 
 <div class="mb-3">

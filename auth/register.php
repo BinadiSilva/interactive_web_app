@@ -7,14 +7,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"] ?? "");
     $address = trim($_POST["address"] ?? "");
     $phone = trim($_POST["phone"] ?? "");
-    $photo = trim($_POST["photo"] ?? "");
     $password = trim($_POST["password"] ?? "");
+
+    $photo_path = "";
 
     if (empty($username) || empty($email) || empty($address) || empty($phone) || empty($password)) {
         $_SESSION['register_message'] = "Please fill all required fields.";
         $_SESSION['register_message_type'] = "error";
         header("Location: ../register.php");
         exit();
+    }
+
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
+        $upload_dir = "../uploads/profile_photos/";
+        $file_name = time() . "_" . basename($_FILES["photo"]["name"]);
+        $target_file = $upload_dir . $file_name;
+        $db_file_path = "uploads/profile_photos/" . $file_name;
+
+        move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
+        $photo_path = $db_file_path;
     }
 
     $check_sql = "SELECT id FROM users WHERE email = ?";
@@ -34,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO users (username, email, password, address, phone, photo) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssss", $username, $email, $hashed_password, $address, $phone, $photo);
+    $stmt->bind_param("ssssss", $username, $email, $hashed_password, $address, $phone, $photo_path);
 
     if ($stmt->execute()) {
         $_SESSION['user_id'] = $stmt->insert_id;
