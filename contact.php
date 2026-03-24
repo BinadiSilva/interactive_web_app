@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </div>
 </section>
 
-<footer class="bg-dark text-white text-center mt-5 p-4">
+<footer class="bg-dark text-white text-center p-4">
   <p>© 2026 Add & Bake. All rights reserved.</p>
 </footer>
 

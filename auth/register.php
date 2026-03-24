@@ -18,14 +18,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    if (isset($_FILES['photo'])) {
+        if ($_FILES['photo']['error'] !== 0) {
+            die("Photo upload error code: " . $_FILES['photo']['error']);
+        }
+    }
+
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
         $upload_dir = "../uploads/profile_photos/";
-        $file_name = time() . "_" . basename($_FILES["photo"]["name"]);
-        $target_file = $upload_dir . $file_name;
-        $db_file_path = "uploads/profile_photos/" . $file_name;
 
-        move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file);
-        $photo_path = $db_file_path;
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+
+        $extension = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+        if (in_array($extension, $allowed)) {
+            $original_name = pathinfo($_FILES['photo']['name'], PATHINFO_FILENAME);
+            $clean_name = preg_replace("/[^a-zA-Z0-9]/", "_", $original_name);
+            $file_name = uniqid("profile_", true) . "_" . $clean_name . "." . $extension;
+            $target_file = $upload_dir . $file_name;
+
+            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+                $photo_path = "uploads/profile_photos/" . $file_name;
+            } else {
+                die("Failed to move uploaded profile photo.");
+            }
+        } else {
+            die("Invalid file type. Only jpg, jpeg, png, gif, webp are allowed.");
+        }
     }
 
     $check_sql = "SELECT id FROM users WHERE email = ?";
@@ -35,11 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check_stmt->store_result();
 
     if ($check_stmt->num_rows > 0) {
+        $check_stmt->close();
         $_SESSION['register_message'] = "Email already registered.";
         $_SESSION['register_message_type'] = "error";
         header("Location: ../register.php");
         exit();
     }
+    $check_stmt->close();
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -52,10 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
 
+        $stmt->close();
         header("Location: ../profile.php");
         exit();
     }
 
+    $stmt->close();
     $_SESSION['register_message'] = "Registration failed.";
     $_SESSION['register_message_type'] = "error";
     header("Location: ../register.php");

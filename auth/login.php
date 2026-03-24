@@ -27,11 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $user["username"];
             $_SESSION['email'] = $user["email"];
 
+            $stmt->close();
             header("Location: ../profile.php");
             exit();
         }
     }
 
+    $stmt->close();
     $_SESSION['login_message'] = "Invalid email or password.";
     $_SESSION['login_message_type'] = "error";
     header("Location: ../login.php");
