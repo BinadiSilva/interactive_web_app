@@ -33,7 +33,7 @@ if (isset($_SESSION['login_message'])) {
       <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
-        <li class="nav-item"><a class="nav-link active" href="login.php">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
         <li class="nav-item ms-2"><a class="btn btn-outline-dark btn-sm" href="register.php">Register</a></li>
       </ul>
     </div>
@@ -50,7 +50,7 @@ if (isset($_SESSION['login_message'])) {
       </div>
     <?php endif; ?>
 
-    <form id="loginForm" method="POST" action="auth/login.php" novalidate>
+    <form method="POST" action="auth/login.php">
       <div class="mb-3">
         <label for="loginEmail" class="form-label">Email</label>
         <input type="email" id="loginEmail" name="email" class="form-control" placeholder="Enter your email" required />

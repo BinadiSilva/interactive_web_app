@@ -106,12 +106,8 @@ if ($table_check && $table_check->num_rows > 0) {
         <li class="nav-item"><a class="nav-link" href="recipes.php">Browse Recipes</a></li>
         <li class="nav-item"><a class="nav-link" href="add_recipe.php">Add Recipe</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
-        <li class="nav-item dropdown ms-3">
-          <a class="nav-link d-flex align-items-center gap-2" href="profile.php">
-            <span class="profile-avatar-small">👤</span>
-            <span><?php echo htmlspecialchars($user['username']); ?></span>
-          </a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="profile.php">Profile</a></li>
+        <li class="nav-item ms-2"><a class="btn btn-danger btn-sm" href="auth/logout.php">Logout</a></li>
       </ul>
     </div>
   </div>
