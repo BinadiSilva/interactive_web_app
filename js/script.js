@@ -1,315 +1,247 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
+  const currentUser =
+    window.recipeBookAuth && typeof window.recipeBookAuth.getCurrentUser === "function"
+      ? window.recipeBookAuth.getCurrentUser()
+      : null;
 
-/* =================================
-SEARCH FUNCTION (RECIPES PAGE)
-================================= */
+  function showInlineMessage(elementId, text, type) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    el.textContent = text;
+    el.className = "form-message mb-3 " + (type === "success" ? "success-text" : "error-text");
+  }
 
-let search = document.getElementById("recipeSearch");
+  const search = document.getElementById("recipeSearch");
+  if (search) {
+    search.addEventListener("keyup", function () {
+      const filter = search.value.toLowerCase();
+      const cards = document.querySelectorAll(".recipe-card");
 
-if(search){
+      cards.forEach(function (card) {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+  }
 
-search.addEventListener("keyup", function(){
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  filterButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      const filter = this.dataset.filter;
+      const cards = document.querySelectorAll(".recipe-card");
 
-let filter = search.value.toLowerCase();
-let cards = document.querySelectorAll(".recipe-card");
+      filterButtons.forEach(btn => btn.classList.remove("active-filter"));
+      this.classList.add("active-filter");
 
-cards.forEach(function(card){
+      cards.forEach(function (card) {
+        if (filter === "all" || card.classList.contains(filter)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
 
-let text = card.innerText.toLowerCase();
+  const recipes = {
+    string_hoppers: {
+      title: "String Hoppers",
+      author: "Binadi",
+      date: "2026-03-15",
+      image: "images/string hoppers.jpg",
+      ingredients: ["Rice flour", "Hot water", "Salt", "Coconut sambol", "Fish curry"],
+      steps: [
+        "Mix rice flour with hot water and salt to form a soft dough.",
+        "Press the dough through a string hopper maker.",
+        "Steam the noodles for about 5 minutes.",
+        "Serve hot with coconut sambol and curry."
+      ]
+    },
+    hoppers: {
+      title: "Hoppers",
+      author: "Anupa",
+      date: "2026-03-15",
+      image: "images/hoppers.jpg",
+      ingredients: ["Rice flour", "Coconut milk", "Yeast", "Sugar", "Salt"],
+      steps: [
+        "Prepare hopper batter using rice flour and coconut milk.",
+        "Allow the batter to ferment for several hours.",
+        "Pour batter into a hot hopper pan.",
+        "Cook until the edges become crispy."
+      ]
+    },
+    chicken_curry: {
+      title: "Chicken Curry",
+      author: "Community",
+      date: "2026-03-15",
+      image: "images/chicken curry.jpg",
+      ingredients: ["Chicken pieces", "Onion", "Garlic", "Curry powder", "Coconut milk"],
+      steps: [
+        "Saute onions and garlic with spices.",
+        "Add chicken pieces and cook well.",
+        "Pour coconut milk and simmer.",
+        "Cook until the curry becomes thick and flavorful."
+      ]
+    },
+    fish_curry: {
+      title: "Fish Curry",
+      author: "Community",
+      date: "2026-03-15",
+      image: "images/fish curry.jpg",
+      ingredients: ["Fish", "Onion", "Garlic", "Goraka", "Curry powder"],
+      steps: [
+        "Prepare the spice base with onion and garlic.",
+        "Add fish pieces carefully.",
+        "Add goraka and curry mixture.",
+        "Cook until the gravy thickens."
+      ]
+    },
+    kottu: {
+      title: "Kottu Roti",
+      author: "Community",
+      date: "2026-03-15",
+      image: "images/kottu rotti.webp",
+      ingredients: ["Godamba roti", "Chicken", "Egg", "Vegetables", "Sauce"],
+      steps: [
+        "Shred the roti into small pieces.",
+        "Cook vegetables, egg, and chicken together.",
+        "Add sauce and seasoning.",
+        "Mix with chopped roti until well combined."
+      ]
+    },
+    fried_rice: {
+      title: "Fried Rice",
+      author: "Community",
+      date: "2026-03-15",
+      image: "images/fried rice.jpg",
+      ingredients: ["Rice", "Carrot", "Leeks", "Egg", "Soy sauce"],
+      steps: [
+        "Heat oil and fry vegetables lightly.",
+        "Add egg and scramble.",
+        "Add cooked rice and soy sauce.",
+        "Mix well and serve hot."
+      ]
+    }
+  };
 
-if(text.includes(filter)){
-card.style.display = "";
-}else{
-card.style.display = "none";
+  const params = new URLSearchParams(window.location.search);
+  const recipeKey = params.get("recipe");
+
+  if (recipeKey && recipes[recipeKey]) {
+    const recipe = recipes[recipeKey];
+
+    const title = document.getElementById("recipeTitle");
+    const author = document.getElementById("recipeAuthor");
+    const date = document.getElementById("recipeDate");
+    const image = document.getElementById("recipeImage");
+    const ingredients = document.getElementById("recipeIngredients");
+    const steps = document.getElementById("recipeSteps");
+
+    if (title) title.textContent = recipe.title;
+    if (author) author.textContent = recipe.author;
+    if (date) date.textContent = recipe.date;
+    if (image) image.src = recipe.image;
+
+    if (ingredients) {
+      ingredients.innerHTML = "";
+      recipe.ingredients.forEach(item => {
+        ingredients.innerHTML += `<li>${item}</li>`;
+      });
+    }
+
+    if (steps) {
+      steps.innerHTML = "";
+      recipe.steps.forEach(step => {
+        steps.innerHTML += `<li>${step}</li>`;
+      });
+    }
+  }
+
+  const reviewForm = document.getElementById("reviewForm");
+if (reviewForm) {
+  reviewForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!currentUser) {
+      showInlineMessage("reviewMessage", "You must login first to submit a review.", "error");
+      return;
+    }
+
+    const name = document.getElementById("reviewName").value.trim();
+    const text = document.getElementById("reviewText").value.trim();
+
+    if (!name || !text) {
+      showInlineMessage("reviewMessage", "Please fill all fields.", "error");
+      return;
+    }
+
+    const review = document.createElement("div");
+    review.classList.add("review-card");
+    review.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+
+    document.getElementById("reviewList").appendChild(review);
+    reviewForm.reset();
+
+    const reviewKey = `userReviews_${currentUser.email}`;
+    const savedReviews = JSON.parse(localStorage.getItem(reviewKey)) || [];
+    savedReviews.push(text);
+    localStorage.setItem(reviewKey, JSON.stringify(savedReviews));
+
+    showInlineMessage("reviewMessage", "Review submitted successfully.", "success");
+  });
 }
 
+  const recipeForm = document.getElementById("recipeForm");
+if (recipeForm) {
+  recipeForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!currentUser) {
+      showInlineMessage("recipeMessage", "You must login first to add a recipe.", "error");
+      return;
+    }
+
+    const name = document.getElementById("name").value.trim();
+    const category = document.getElementById("category").value.trim();
+    const ingredients = document.getElementById("ingredients").value.trim();
+    const steps = document.getElementById("steps").value.trim();
+
+    if (!name || !category || !ingredients || !steps) {
+      showInlineMessage("recipeMessage", "Please fill all required fields.", "error");
+      return;
+    }
+
+    const recipeKey = `userRecipes_${currentUser.email}`;
+    const savedRecipes = JSON.parse(localStorage.getItem(recipeKey)) || [];
+    savedRecipes.push(name);
+    localStorage.setItem(recipeKey, JSON.stringify(savedRecipes));
+
+    recipeForm.reset();
+    showInlineMessage("recipeMessage", "Recipe submitted successfully.", "success");
+  });
+}
+
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (!currentUser) {
+        showInlineMessage("contactFormMessage", "You must login first to send a message.", "error");
+        return;
+      }
+
+      const name = document.getElementById("contactName").value.trim();
+      const email = document.getElementById("contactEmail").value.trim();
+      const message = document.getElementById("contactMessage").value.trim();
+
+      if (!name || !email || !message) {
+        showInlineMessage("contactFormMessage", "Please fill all fields.", "error");
+        return;
+      }
+
+      contactForm.reset();
+      showInlineMessage("contactFormMessage", "Message submitted successfully.", "success");
+    });
+  }
 });
-
-});
-
-}
-
-
-/* =================================
-FILTER BUTTONS
-================================= */
-
-let filterButtons = document.querySelectorAll(".filter-btn");
-
-filterButtons.forEach(button => {
-
-button.addEventListener("click", function(){
-
-let filter = this.dataset.filter;
-let cards = document.querySelectorAll(".recipe-card");
-
-cards.forEach(function(card){
-
-if(filter === "all"){
-card.style.display = "";
-}
-else if(card.classList.contains(filter)){
-card.style.display = "";
-}
-else{
-card.style.display = "none";
-}
-
-});
-
-});
-
-});
-
-
-/* =================================
-RECIPE DATA
-================================= */
-
-const recipes = {
-
-string_hoppers:{
-title:"String Hoppers",
-author:"Binadi",
-date:"2026-03-15",
-image:"images/string hoppers.jpg",
-ingredients:[
-"Rice flour",
-"Hot water",
-"Salt",
-"Coconut sambol",
-"Fish curry"
-],
-steps:[
-"Mix rice flour with hot water and salt to form a soft dough.",
-"Press the dough through a string hopper maker.",
-"Steam the noodles for about 5 minutes.",
-"Serve hot with coconut sambol and curry."
-]
-},
-
-hoppers:{
-title:"Hoppers",
-author:"Anupa",
-date:"2026-03-15",
-image:"images/hoppers.jpg",
-ingredients:[
-"Rice flour",
-"Coconut milk",
-"Yeast",
-"Sugar",
-"Salt"
-],
-steps:[
-"Prepare hopper batter using rice flour and coconut milk.",
-"Allow the batter to ferment for several hours.",
-"Pour batter into a hot hopper pan.",
-"Cook until the edges become crispy."
-]
-},
-
-kiribath:{
-title:"Milk Rice (Kiribath)",
-author:"Community",
-date:"2026-03-15",
-image:"images/milkrice.jpg",
-ingredients:[
-"Rice",
-"Coconut milk",
-"Salt"
-],
-steps:[
-"Cook rice until soft.",
-"Add coconut milk and salt.",
-"Cook until the mixture thickens.",
-"Spread on a tray and cut into pieces."
-]
-},
-
-chicken_curry:{
-title:"Chicken Curry",
-author:"Community",
-date:"2026-03-15",
-image:"images/chicken curry.jpg",
-ingredients:[
-"Chicken pieces",
-"Onion",
-"Garlic",
-"Curry powder",
-"Coconut milk"
-],
-steps:[
-"Saute onions and garlic with spices.",
-"Add chicken pieces and cook well.",
-"Pour coconut milk and simmer.",
-"Cook until the curry becomes thick and flavorful."
-]
-}
-
-};
-
-
-/* =================================
-LOAD RECIPE DETAILS
-================================= */
-
-const params = new URLSearchParams(window.location.search);
-const recipe = params.get("recipe");
-
-if(recipe && recipes[recipe]){
-
-document.getElementById("recipeTitle").innerText = recipes[recipe].title;
-document.getElementById("recipeAuthor").innerText = recipes[recipe].author;
-document.getElementById("recipeDate").innerText = recipes[recipe].date;
-document.getElementById("recipeImage").src = recipes[recipe].image;
-
-let ingredientsHTML = "";
-
-recipes[recipe].ingredients.forEach(function(i){
-ingredientsHTML += `<li>${i}</li>`;
-});
-
-document.getElementById("recipeIngredients").innerHTML = ingredientsHTML;
-
-let stepsHTML = "";
-
-recipes[recipe].steps.forEach(function(s){
-stepsHTML += `<li>${s}</li>`;
-});
-
-document.getElementById("recipeSteps").innerHTML = stepsHTML;
-
-}
-
-
-/* =================================
-ADD REVIEW
-================================= */
-
-let reviewForm = document.getElementById("reviewForm");
-
-if(reviewForm){
-
-reviewForm.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-let name = document.getElementById("reviewName").value.trim();
-let text = document.getElementById("reviewText").value.trim();
-let message = document.getElementById("reviewMessage");
-
-if(name === "" || text === ""){
-
-message.innerHTML = "⚠ Please fill all fields.";
-message.style.color = "red";
-
-return;
-
-}
-
-let review = document.createElement("div");
-review.classList.add("review-card");
-
-review.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
-
-document.getElementById("reviewList").appendChild(review);
-
-message.innerHTML = "✔ Review submitted successfully!";
-message.style.color = "green";
-
-reviewForm.reset();
-
-});
-
-}
-
-
-/* =================================
-ADD RECIPE FORM
-================================= */
-
-let recipeForm = document.getElementById("recipeForm");
-
-if(recipeForm){
-
-recipeForm.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-let name = document.getElementById("name").value;
-
-if(name === ""){
-alert("Recipe name is required");
-return;
-}
-
-alert("Recipe submitted successfully!");
-
-recipeForm.reset();
-
-location.reload();
-
-});
-
-}
-
-
-/* =================================
-CONTACT FORM
-================================= */
-
-let contactForm = document.getElementById("contactForm");
-
-if(contactForm){
-
-contactForm.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-alert("Message submitted successfully!");
-
-contactForm.reset();
-
-location.reload();
-
-});
-
-}
-
-});
-
-/* =================================
-SHOW PROFILE ICON + USERNAME
-================================= */
-
-let loginNav = document.getElementById("loginNav");
-let profileNav = document.getElementById("profileNav");
-let navUserName = document.getElementById("navUserName");
-
-let loggedIn = localStorage.getItem("loggedIn");
-let user = JSON.parse(localStorage.getItem("user"));
-
-if(loggedIn){
-
-if(loginNav) loginNav.style.display = "none";
-if(profileNav) profileNav.classList.remove("d-none");
-if(navUserName && user) navUserName.innerText = user.name;
-
-}
-
-/* =================================
-PROTECT PAGES
-================================= */
-
-function checkLogin(){
-
-let loggedIn = localStorage.getItem("loggedIn");
-
-if(!loggedIn){
-window.location = "login.html";
-return false;
-}
-
-return true;
-
-}

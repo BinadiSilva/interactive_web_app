@@ -1,214 +1,190 @@
-/* =================================
-GENERAL
-================================= */
-
 body{
-font-family: Arial, sans-serif;
-background:#f5f5f5;
-margin:0;
-padding:0;
+  font-family: Arial, sans-serif;
+  background:#f5f5f5;
+  margin:0;
+  padding:0;
 }
 
-
-/* =================================
-NAVBAR
-================================= */
-
 .navbar{
-border-bottom:1px solid #ddd;
+  border-bottom:1px solid #ddd;
 }
 
 .navbar-brand{
-font-weight:bold;
-font-size:20px;
+  font-weight:bold;
+  font-size:20px;
 }
 
-
-/* =================================
-CARDS (RECIPES PAGE)
-================================= */
-
 .card{
-border:none;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-border-radius:8px;
-transition:0.3s;
+  border:none;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  border-radius:8px;
+  transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-5px);
-box-shadow:0 6px 18px rgba(0,0,0,0.2);
+  transform:translateY(-5px);
+  box-shadow:0 6px 18px rgba(0,0,0,0.2);
 }
 
 .card img{
-height:200px;
-object-fit:cover;
-border-top-left-radius:8px;
-border-top-right-radius:8px;
+  height:200px;
+  object-fit:cover;
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
 }
-
-.card-title{
-font-weight:600;
-}
-
-
-/* =================================
-SEARCH BAR
-================================= */
 
 input[type="search"]{
-border-radius:25px;
-padding:10px;
+  border-radius:25px;
+  padding:10px;
 }
 
-
-/* =================================
-FORMS (ADD RECIPE + CONTACT)
-================================= */
-
-form{
-background:white;
-padding:25px;
-border-radius:8px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
+.site-form,
+.auth-card,
+.profile-card{
+  background:white;
+  padding:28px;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
 
-.form-label{
-font-weight:500;
+.auth-card{
+  max-width:420px;
 }
 
-textarea{
-resize:none;
+.profile-card{
+  max-width:520px;
+  text-align:center;
 }
 
+.profile-avatar-small{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#212529;
+  color:#fff;
+  font-size:16px;
+}
 
-/* =================================
-RECIPE DETAILS PAGE
-(only affects recipe_details.html)
-================================= */
+.profile-avatar-large{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:90px;
+  height:90px;
+  margin:0 auto;
+  border-radius:50%;
+  background:#212529;
+  color:#fff;
+  font-size:38px;
+}
+
+.form-message{
+  font-weight:600;
+  min-height:24px;
+}
+
+.success-text{
+  color:#198754;
+}
+
+.error-text{
+  color:#dc3545;
+}
 
 .recipe-page{
-background:white;
-padding:40px;
-border-radius:10px;
-box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  background:white;
+  padding:40px;
+  border-radius:10px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
-
-
-/* Recipe Image */
 
 .recipe-page .recipe-img{
-width:260px;
-max-width:100%;
-border-radius:10px;
-box-shadow:0 6px 18px rgba(0,0,0,0.2);
+  width:260px;
+  max-width:100%;
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.2);
 }
 
-
-/* Ingredients */
-
 .recipe-page .ingredient-list{
-list-style:none;
-padding:0;
+  list-style:none;
+  padding:0;
 }
 
 .recipe-page .ingredient-list li{
-background:#f8f8f8;
-padding:10px;
-margin-bottom:8px;
-border-radius:6px;
+  background:#f8f8f8;
+  padding:10px;
+  margin-bottom:8px;
+  border-radius:6px;
 }
 
-
-/* Cooking Steps */
-
 .recipe-page .steps-box{
-background:#fafafa;
-padding:20px;
-border-radius:8px;
+  background:#fafafa;
+  padding:20px;
+  border-radius:8px;
 }
 
 .recipe-page .steps-box li{
-margin-bottom:10px;
+  margin-bottom:10px;
 }
-
-
-/* Recipe Meta */
 
 .recipe-page .recipe-meta{
-font-size:14px;
-color:#777;
+  font-size:14px;
+  color:#777;
 }
-
-
-/* Rating */
 
 .recipe-page .rating{
-font-size:22px;
-color:#f39c12;
-margin-bottom:10px;
+  font-size:22px;
+  color:#f39c12;
+  margin-bottom:10px;
 }
-
-
-/* Reviews */
 
 .recipe-page .review-card{
-background:#fafafa;
-padding:15px;
-margin-bottom:10px;
-border-radius:6px;
-box-shadow:0 2px 5px rgba(0,0,0,0.08);
+  background:#fafafa;
+  padding:15px;
+  margin-bottom:10px;
+  border-radius:6px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.08);
 }
 
-
-/* =================================
-FOOTER
-================================= */
-
 footer{
-background:#222;
-color:white;
-text-align:center;
-padding:20px;
-margin-top:40px;
+  background:#222;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:40px;
 }
 
 footer p{
-margin:0;
-font-size:14px;
+  margin:0;
+  font-size:14px;
 }
 
-
-/* =================================
-BUTTONS
-================================= */
-
-.btn-outline-dark{
-border-radius:25px;
-padding:6px 16px;
+.btn-outline-dark,
+.btn-primary,
+.btn-dark,
+.btn-danger{
+  border-radius:25px;
 }
-
-.btn-primary{
-border-radius:25px;
-}
-
-
-/* =================================
-RESPONSIVE
-================================= */
 
 @media (max-width:768px){
+  .card img{
+    height:160px;
+  }
 
-.card img{
-height:160px;
-}
+  .recipe-page{
+    padding:25px;
+  }
 
-.recipe-page{
-padding:25px;
-}
+  .recipe-page .recipe-img{
+    width:200px;
+  }
 
-.recipe-page .recipe-img{
-width:200px;
-}
-
+  .auth-card,
+  .profile-card,
+  .site-form{
+    padding:20px;
+  }
 }
